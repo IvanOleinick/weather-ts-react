@@ -1,4 +1,3 @@
-
 interface WeatherInfo {
     country: string;
     city: string;

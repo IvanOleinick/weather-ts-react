@@ -3,13 +3,24 @@ import {api_key, base_url} from "../utils/constans.ts";
 import Weather from "./Weather.tsx";
 import Form from "./Form.tsx";
 
+
+interface weatherInfo {
+    country: string;
+    city: string;
+    temp: number;
+    pressure: number;
+    sunset: string;
+}
+
 const Data = () => {
-    const [weatherInfo, setWeatherInfo] = useState();
+    const [weatherInfo, setWeatherInfo] = useState<weatherInfo | null>(null);
     const [message, setMessage] = useState('Enter city name');
+
+
 
     const getWeather = (city: { name: string }) => {
 
-        fetch(`${base_url}?q=${city}&appid=${api_key}&units=metric`, {})
+        fetch(`${base_url}?q=${city}&appid=${api_key}&units=metric`,{})
             .then(res => res.json())
             .then(data => {
                 setWeatherInfo({
